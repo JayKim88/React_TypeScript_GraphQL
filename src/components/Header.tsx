@@ -21,6 +21,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 interface Props {
+  // 여기에선 Header 컴포넌트의 children 인 Switch 엘리먼트를 받는다.
   children: React.ReactNode;
 }
 

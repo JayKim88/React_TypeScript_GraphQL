@@ -8,20 +8,9 @@ import {
 } from "@material-ui/core/styles";
 import Header from "./components/Header";
 import Switch from "@material-ui/core/Switch";
-import Paper from "@material-ui/core/Paper";
-import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    paper: {
-      width: "100%",
-      height: "100vh",
-    },
-  })
-);
+import Products from "./pages/Products";
 
 function App() {
-  const classes = useStyles();
   const [isDark, setIsDark] = useState(false);
   const [themeOption, setThemeOption] = useState<ThemeOptions>({
     palette: {
@@ -35,6 +24,9 @@ function App() {
     },
   });
 
+  //스위치를 클릭할 때 event.target.checked 가 true 또는 false 가 되어
+  //true 일때는 다크 false 일때는 light 테마가 적용되도록 한다.
+  //event 의 타입이 무엇인지 모를때는 해당 handleChange 에 마우스를 후버하면 확인할 수 있다.
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setIsDark(event.target.checked);
     setThemeOption((prev) => ({
@@ -51,6 +43,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <Header>
+        {/* Switches toggle the state of a single setting on or off. */}
         <Switch
           checked={isDark}
           onChange={handleChange}
@@ -58,7 +51,7 @@ function App() {
           inputProps={{ "aria-label": "secondary checkbox" }}
         />
       </Header>
-      <Paper className={classes.paper} />
+      <Products />
     </ThemeProvider>
   );
 }
